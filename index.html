@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найдите свой идеальный чай ☕</title>
+    <style>
+        :root {
+            --color-cream: #FDF6E3;
+            --color-cream-dark: #F4E4C1;
+            --color-red: #DC143C;
+            --color-red-dark: #B22222;
+            --color-gold: #FFD700;
+            --color-gold-dark: #DAA520;
+            --color-jade: #00A86B;
+            --color-jade-dark: #006B3C;
+            --color-ink: #2F2F2F;
+            --color-ink-light: #4A4A4A;
+            --color-paper: #FEFEFE;
+            --color-silk: #E8D5B7;
+            --color-ceramic: #F5F5DC;
+            --color-text: #1A1A1A;
+            --color-text-light: #4A4A4A;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.25);
+            --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --gradient-chinese: linear-gradient(135deg, #DC143C 0%, #FFD700 50%, #00A86B 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #DAA520 100%);
+            --gradient-jade: linear-gradient(135deg, #00A86B 0%, #006B3C 100%);
+            --gradient-paper: linear-gradient(135deg, #FEFEFE 0%, #F5F5DC 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-cream);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tea-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%238B6F47" opacity="0.1"/><circle cx="15" cy="15" r="0.5" fill="%237A9D54" opacity="0.08"/><circle cx="35" cy="35" r="0.5" fill="%23DC143C" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23tea-pattern)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: var(--color-paper);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 2px solid var(--color-silk);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-jade);
+            border-radius: 32px 32px 0 0;
+        }
+
+        .container::after {
+            content: '茶道';
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 20px;
+            color: var(--color-gold);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .screen {
+            display: none;
+            padding: 50px 40px;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .welcome-screen {
+            text-align: center;
+        }
+
+        .tea-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            position: relative;
+        }
+
+        .tea-icon::before {
+            content: '🍃';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 24px;
+            color: var(--color-jade);
+        }
+
+        .tea-icon::after {
+            content: '🌸';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-size: 20px;
+            color: var(--color-red);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--color-jade);
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        h1::before {
+            content: '茶道';
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--color-brown);
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        h1::after {
+            content: '☯';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 1.2rem;
+            color: var(--color-brown);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-bottom: 35px;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+        }
+
+        .subtitle::before {
+            content: '「';
+            position: absolute;
+            left: -15px;
+            top: -5px;
+            font-size: 1.5rem;
+            color: var(--color-brown);
+            opacity: 0.7;
+        }
+
+        .subtitle::after {
+            content: '」';
+            position: absolute;
+            right: -15px;
+            top: -5px;
+            font-size: 1.5rem;
+            color: var(--color-brown);
+            opacity: 0.7;
+        }
+
+        .btn {
+            background: var(--color-jade);
+            color: white;
+            border: 2px solid var(--color-brown);
+            padding: 18px 45px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '茶';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .btn::after {
+            content: '道';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--color-cream);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--color-jade);
+            transition: width 0.4s ease;
+            border-radius: 20px;
+        }
+
+        .question-number {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--color-ink);
+            margin-bottom: 30px;
+            font-weight: 600;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        h2::before {
+            content: '茶';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--color-jade);
+            font-weight: bold;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .answer-btn {
+            background: var(--color-paper);
+            border: 2px solid var(--color-silk);
+            padding: 20px 25px;
+            font-size: 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            color: var(--color-text);
+            font-weight: 500;
+            box-shadow: var(--shadow-soft);
+        }
+
+
+        .answer-btn:hover {
+            border-color: var(--color-jade);
+            background: var(--color-cream);
+            transform: translateX(8px) translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .answer-btn:active {
+            transform: translateX(4px) translateY(0);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .btn-secondary {
+            background: var(--color-silk);
+            color: var(--color-text);
+            border: 2px solid var(--color-gold);
+            padding: 14px 35px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: var(--shadow-soft);
+        }
+
+
+        .btn-secondary:hover {
+            background: var(--color-jade);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-screen {
+            text-align: center;
+        }
+
+        .result-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+            color: var(--teapot-color, #DC143C);
+            text-shadow: var(--teapot-shadow, 0 0 20px rgba(220, 20, 60, 0.3));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-icon svg {
+            width: 140px;
+            height: 140px;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px currentColor);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .result-icon:hover svg {
+            transform: scale(1.08) rotateY(5deg);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 30px currentColor);
+        }
+
+        .result-icon.black-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(47, 47, 47, 0.4)) drop-shadow(0 0 20px #2F2F2F);
+        }
+
+        .result-icon.green-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(34, 139, 34, 0.4)) drop-shadow(0 0 20px #228B22);
+        }
+
+        .result-icon.white-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(245, 245, 245, 0.4)) drop-shadow(0 0 20px #F5F5F5);
+        }
+
+        .result-icon.oolong-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(205, 133, 63, 0.4)) drop-shadow(0 0 20px #CD853F);
+        }
+
+        .result-icon.puer-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(139, 69, 19, 0.4)) drop-shadow(0 0 20px #8B4513);
+        }
+
+        .result-icon.yellow-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(255, 215, 0, 0.4)) drop-shadow(0 0 20px #FFD700);
+        }
+
+        .result-icon.herbal-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(220, 20, 60, 0.4)) drop-shadow(0 0 20px #DC143C);
+        }
+
+        .result-icon.black-tea {
+            color: #2F2F2F !important;
+            text-shadow: 0 0 20px rgba(47, 47, 47, 0.3) !important;
+        }
+
+        .result-icon.green-tea {
+            color: #228B22 !important;
+            text-shadow: 0 0 20px rgba(34, 139, 34, 0.3) !important;
+        }
+
+        .result-icon.white-tea {
+            color: #F5F5F5 !important;
+            text-shadow: 0 0 20px rgba(245, 245, 245, 0.5) !important;
+        }
+
+        .result-icon.oolong-tea {
+            color: #CD853F !important;
+            text-shadow: 0 0 20px rgba(205, 133, 63, 0.3) !important;
+        }
+
+        .result-icon.puer-tea {
+            color: #8B4513 !important;
+            text-shadow: 0 0 20px rgba(139, 69, 19, 0.3) !important;
+        }
+
+        .result-icon.yellow-tea {
+            color: #FFD700 !important;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3) !important;
+        }
+
+        .result-icon.herbal-tea {
+            color: #DC143C !important;
+            text-shadow: 0 0 20px rgba(220, 20, 60, 0.3) !important;
+        }
+
+        .result-title {
+            font-size: 2.2rem;
+            color: var(--color-jade);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .result-title::before {
+            content: '品茶';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--color-brown);
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .result-description {
+            font-size: 1.15rem;
+            color: var(--color-text);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .result-details {
+            background: var(--color-paper);
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 30px;
+            text-align: left;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--color-silk);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-jade);
+        }
+
+        .result-details::after {
+            content: '茶经';
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 18px;
+            color: var(--color-brown);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .result-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: 
+                linear-gradient(90deg, 
+                    var(--color-red) 0%, 
+                    var(--color-gold) 25%, 
+                    var(--color-jade) 50%, 
+                    var(--color-gold) 75%, 
+                    var(--color-red) 100%);
+        }
+
+        .result-details p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: var(--color-text);
+        }
+
+        .result-details strong {
+            color: var(--color-jade);
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            .screen {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .tea-icon {
+                font-size: 60px;
+            }
+
+            .result-icon {
+                font-size: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="screen active" id="welcome-screen">
+            <div class="welcome-screen">
+                <div class="tea-icon">🍵</div>
+                <h1>Найдите свой идеальный чай</h1>
+                <p class="subtitle">Ответьте на 7 вопросов и узнайте, какой сорт чая подходит именно вам</p>
+                <button class="btn" onclick="startQuiz()">Начать квиз</button>
+            </div>
+        </div>
+
+        <!-- Question Screen -->
+        <div class="screen" id="question-screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <div class="question-number" id="question-number"></div>
+            <h2 id="question-text"></h2>
+            <div class="answers" id="answers"></div>
+            <div class="navigation">
+                <button class="btn-secondary" id="back-btn" onclick="goBack()" disabled>← Назад</button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div class="screen" id="result-screen">
+            <div class="result-screen">
+                <div class="result-icon" id="teapot-icon">
+                    <svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Градиенты для технологичного вида -->
+                            <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:currentColor;stop-opacity:0.9" />
+                                <stop offset="50%" style="stop-color:currentColor;stop-opacity:0.7" />
+                                <stop offset="100%" style="stop-color:currentColor;stop-opacity:0.5" />
+                            </linearGradient>
+                            <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:white;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:currentColor;stop-opacity:0.3" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge> 
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Основной корпус - геометрический -->
+                        <rect x="30" y="60" width="80" height="40" rx="20" ry="20" 
+                              fill="url(#mainGradient)" filter="url(#glow)"/>
+                        <rect x="35" y="65" width="70" height="30" rx="15" ry="15" 
+                              fill="url(#accentGradient)"/>
+                        
+                        <!-- Крышка - футуристическая -->
+                        <rect x="40" y="40" width="60" height="25" rx="12" ry="12" 
+                              fill="url(#mainGradient)" filter="url(#glow)"/>
+                        <rect x="45" y="45" width="50" height="15" rx="8" ry="8" 
+                              fill="url(#accentGradient)"/>
+                        
+                        <!-- Технологичная ручка -->
+                        <rect x="20" y="70" width="15" height="8" rx="4" ry="4" 
+                              fill="currentColor" opacity="0.8"/>
+                        <rect x="18" y="68" width="4" height="12" rx="2" ry="2" 
+                              fill="currentColor" opacity="0.6"/>
+                        <rect x="22" y="66" width="4" height="16" rx="2" ry="2" 
+                              fill="currentColor" opacity="0.4"/>
+                        
+                        <!-- Футуристический носик -->
+                        <rect x="110" y="75" width="20" height="8" rx="4" ry="4" 
+                              fill="url(#mainGradient)"/>
+                        <rect x="125" y="77" width="8" height="4" rx="2" ry="2" 
+                              fill="currentColor" opacity="0.7"/>
+                        
+                        <!-- Технологичная кнопка -->
+                        <circle cx="70" cy="52" r="6" fill="url(#accentGradient)" filter="url(#glow)"/>
+                        <circle cx="70" cy="52" r="3" fill="white" opacity="0.9"/>
+                        <circle cx="70" cy="52" r="1" fill="currentColor" opacity="0.8"/>
+                        
+                        <!-- Светящиеся линии -->
+                        <line x1="40" y1="80" x2="100" y2="80" stroke="currentColor" 
+                              stroke-width="2" opacity="0.4" filter="url(#glow)"/>
+                        <line x1="45" y1="85" x2="95" y2="85" stroke="currentColor" 
+                              stroke-width="1" opacity="0.3"/>
+                        
+                        <!-- Технологичные индикаторы -->
+                        <rect x="50" y="45" width="3" height="3" rx="1" ry="1" 
+                              fill="white" opacity="0.8"/>
+                        <rect x="55" y="45" width="3" height="3" rx="1" ry="1" 
+                              fill="white" opacity="0.6"/>
+                        <rect x="60" y="45" width="3" height="3" rx="1" ry="1" 
+                              fill="white" opacity="0.4"/>
+                        
+                        <!-- Аристократические детали -->
+                        <rect x="35" y="70" width="70" height="2" rx="1" ry="1" 
+                              fill="white" opacity="0.3"/>
+                        <rect x="40" y="75" width="60" height="1" rx="0.5" ry="0.5" 
+                              fill="white" opacity="0.2"/>
+                        
+                        <!-- Световые эффекты -->
+                        <ellipse cx="50" cy="70" rx="15" ry="8" fill="white" opacity="0.1"/>
+                        <ellipse cx="90" cy="70" rx="10" ry="5" fill="white" opacity="0.08"/>
+                    </svg>
+                </div>
+                <h1 class="result-title" id="result-title"></h1>
+                <p class="result-description" id="result-description"></p>
+                <div class="result-details" id="result-details"></div>
+                <button class="btn" onclick="restartQuiz()">Пройти заново</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Когда вы обычно пьете чай?",
+                answers: [
+                    { text: "Утром, чтобы проснуться", weights: { black: 3, puer: 3, green: 1 } },
+                    { text: "Днем, во время работы", weights: { green: 3, oolong: 2, yellow: 1 } },
+                    { text: "Вечером, для расслабления", weights: { white: 3, oolong: 2, herbal: 1 } },
+                    { text: "После еды", weights: { puer: 4, oolong: 2, yellow: 1 } }
+                ]
+            },
+            {
+                question: "Какой эффект вы хотите получить от чая?",
+                answers: [
+                    { text: "Мощный заряд бодрости", weights: { black: 3, puer: 3 } },
+                    { text: "Мягкую активность и концентрацию", weights: { green: 3, yellow: 2 } },
+                    { text: "Расслабление и умиротворение", weights: { white: 3, oolong: 2 } },
+                    { text: "Баланс энергии и спокойствия", weights: { oolong: 3, green: 1 } }
+                ]
+            },
+            {
+                question: "Какой вкус вам ближе?",
+                answers: [
+                    { text: "Насыщенный, терпкий, крепкий", weights: { black: 3, puer: 2 } },
+                    { text: "Свежий, травянистый, легкий", weights: { green: 3, yellow: 1 } },
+                    { text: "Нежный, цветочный, сладковатый", weights: { white: 3, oolong: 2 } },
+                    { text: "Сложный, многогранный, глубокий", weights: { oolong: 3, puer: 3 } }
+                ]
+            },
+            {
+                question: "Как вы относитесь к горечи в чае?",
+                answers: [
+                    { text: "Люблю выраженную горчинку", weights: { green: 3, puer: 2 } },
+                    { text: "Легкая терпкость - в самый раз", weights: { black: 2, oolong: 3 } },
+                    { text: "Предпочитаю без горечи", weights: { white: 3, yellow: 2, herbal: 1 } }
+                ]
+            },
+            {
+                question: "Что для вас важнее?",
+                answers: [
+                    { text: "Традиции и классика", weights: { black: 3, green: 2 } },
+                    { text: "Здоровье и польза", weights: { green: 3, white: 2, puer: 1 } },
+                    { text: "Необычный опыт и эксперименты", weights: { oolong: 3, puer: 2 } },
+                    { text: "Эстетика и атмосфера", weights: { white: 3, yellow: 2 } }
+                ]
+            },
+            {
+                question: "Ваш темп жизни?",
+                answers: [
+                    { text: "Активный, динамичный", weights: { black: 3, puer: 3 } },
+                    { text: "Умеренный, сбалансированный", weights: { oolong: 3, green: 2 } },
+                    { text: "Спокойный, размеренный", weights: { white: 3, yellow: 2 } }
+                ]
+            },
+            {
+                question: "Какая атмосфера вам нравится?",
+                answers: [
+                    { text: "Энергичная встреча с друзьями", weights: { black: 2, herbal: 3 } },
+                    { text: "Рабочая концентрация", weights: { green: 3, yellow: 2 } },
+                    { text: "Медитативное уединение", weights: { white: 3, oolong: 2 } },
+                    { text: "Согревающий домашний уют", weights: { oolong: 2, puer: 4 } }
+                ]
+            }
+        ];
+
+        const teaTypes = {
+            black: {
+                name: "Черный чай",
+                description: "Вам идеально подходит классический черный чай! Насыщенный, терпкий и бодрящий - он станет вашим надежным спутником в начале дня. Попробуйте сорта: Ассам, Дарджилинг, Кимун.",
+                taste: "насыщенный, терпкий, крепкий",
+                effect: "сильная бодрость, согревает",
+                caffeine: "высокий",
+                time: "утро, день"
+            },
+            green: {
+                name: "Зеленый чай",
+                description: "Зеленый чай - ваш выбор! Свежий, легкий и полезный, он дарит мягкую энергию и ясность ума. Отлично подходит для концентрации на работе. Попробуйте: Лунцзин, Билуочунь, Сенча.",
+                taste: "свежий, травянистый",
+                effect: "фокус, освежает",
+                caffeine: "средний",
+                time: "день, утро"
+            },
+            white: {
+                name: "Белый чай",
+                description: "Белый чай создан для вас! Нежный, утонченный и элегантный - для ценителей тонких вкусов и эстетики. Идеален для вечернего расслабления. Попробуйте: Бай Хао Инь Чжэнь, Бай Му Дань.",
+                taste: "нежный, сладковатый, цветочный",
+                effect: "расслабление, омоложение",
+                caffeine: "низкий",
+                time: "вечер, день"
+            },
+            oolong: {
+                name: "Улун (Оолонг)",
+                description: "Улун - ваш идеальный баланс! Сложный, многогранный вкус и гармония бодрости со спокойствием. Универсален для любого времени суток. Попробуйте: Те Гуань Инь, Да Хун Пао, Молочный улун.",
+                taste: "сложный, ароматный, цветочно-фруктовый",
+                effect: "баланс энергии и покоя",
+                caffeine: "средний",
+                time: "любое"
+            },
+            puer: {
+                name: "Пуэр",
+                description: "Пуэр - чай для глубоких натур! Землистый, насыщенный вкус с мощным тонизирующим эффектом. Отличный выбор для утра и после еды. Попробуйте: Шу Пуэр, Шэн Пуэр.",
+                taste: "землистый, глубокий, насыщенный",
+                effect: "детокс, энергия, пищеварение",
+                caffeine: "высокий",
+                time: "утро, после еды"
+            },
+            yellow: {
+                name: "Желтый чай",
+                description: "Желтый чай - редкая находка для утонченной натуры! Мягкий, деликатный, без горечи - он успокаивает и улучшает концентрацию. Попробуйте: Цзюньшань Иньчжэнь.",
+                taste: "мягкий, без горечи, элегантный",
+                effect: "успокоение, фокус",
+                caffeine: "низкий",
+                time: "утро, день"
+            },
+            herbal: {
+                name: "Фруктовый/травяной чай",
+                description: "Фруктовые и травяные чаи созданы для вас! Яркие, сладкие, поднимающие настроение - они дарят радость без кофеина. Попробуйте: Ройбуш, чай с жасмином, фруктовые смеси.",
+                taste: "яркий, сладкий, разнообразный",
+                effect: "настроение, витамины",
+                caffeine: "без кофеина",
+                time: "вечер, полдень"
+            }
+        };
+
+        let currentQuestion = 0;
+        let scores = { black: 0, green: 0, white: 0, oolong: 0, puer: 0, yellow: 0, herbal: 0 };
+        let history = [];
+
+        function startQuiz() {
+            showScreen('question-screen');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('question-number').textContent = `Вопрос ${currentQuestion + 1} из ${questions.length}`;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+
+            const answersContainer = document.getElementById('answers');
+            answersContainer.innerHTML = '';
+
+            question.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.className = 'answer-btn';
+                button.textContent = answer.text;
+                button.onclick = () => selectAnswer(index);
+                answersContainer.appendChild(button);
+            });
+
+            document.getElementById('back-btn').disabled = currentQuestion === 0;
+        }
+
+        function selectAnswer(answerIndex) {
+            const answer = questions[currentQuestion].answers[answerIndex];
+            history.push({ question: currentQuestion, answer: answerIndex, weights: answer.weights });
+
+            // Add weights to scores
+            for (let tea in answer.weights) {
+                scores[tea] += answer.weights[tea];
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function goBack() {
+            if (history.length === 0) return;
+
+            const lastAction = history.pop();
+            
+            // Subtract weights from scores
+            for (let tea in lastAction.weights) {
+                scores[tea] -= lastAction.weights[tea];
+            }
+
+            currentQuestion = lastAction.question;
+            showQuestion();
+        }
+
+        function showResult() {
+            let maxScore = 0;
+            let resultTea = '';
+
+            for (let tea in scores) {
+                if (scores[tea] > maxScore) {
+                    maxScore = scores[tea];
+                    resultTea = tea;
+                }
+            }
+
+            // Priority order in case of tie: oolong > green > black
+            if (maxScore === 0) {
+                resultTea = 'oolong';
+            }
+
+            console.log('Результат чая:', resultTea, 'Счет:', scores); // Отладка
+            const result = teaTypes[resultTea];
+            document.getElementById('result-title').textContent = result.name;
+            document.getElementById('result-description').textContent = result.description;
+            
+            const detailsHTML = `
+                <p><strong>Вкус:</strong> ${result.taste}</p>
+                <p><strong>Эффект:</strong> ${result.effect}</p>
+                <p><strong>Кофеин:</strong> ${result.caffeine}</p>
+                <p><strong>Время:</strong> ${result.time}</p>
+            `;
+            document.getElementById('result-details').innerHTML = detailsHTML;
+
+            // Устанавливаем цвет чайника в соответствии с типом чая
+            const resultIcon = document.getElementById('teapot-icon');
+            
+            console.log('Найден элемент чайника:', resultIcon);
+            console.log('Тип чая:', resultTea);
+            
+            if (!resultIcon) {
+                console.error('Элемент чайника не найден!');
+                return;
+            }
+            
+            // Цвета для каждого типа чая
+            const teaColors = {
+                'black': { color: '#2F2F2F', shadow: '0 0 20px rgba(47, 47, 47, 0.3)' },
+                'green': { color: '#228B22', shadow: '0 0 20px rgba(34, 139, 34, 0.3)' },
+                'white': { color: '#F5F5F5', shadow: '0 0 20px rgba(245, 245, 245, 0.5)' },
+                'oolong': { color: '#CD853F', shadow: '0 0 20px rgba(205, 133, 63, 0.3)' },
+                'puer': { color: '#8B4513', shadow: '0 0 20px rgba(139, 69, 19, 0.3)' },
+                'yellow': { color: '#FFD700', shadow: '0 0 20px rgba(255, 215, 0, 0.3)' },
+                'herbal': { color: '#DC143C', shadow: '0 0 20px rgba(220, 20, 60, 0.3)' }
+            };
+            
+            // Применяем цвет через CSS-переменные
+            if (teaColors[resultTea]) {
+                console.log('Применяем цвет:', teaColors[resultTea]);
+                
+                // Устанавливаем CSS-переменные для корневого элемента
+                document.documentElement.style.setProperty('--teapot-color', teaColors[resultTea].color);
+                document.documentElement.style.setProperty('--teapot-shadow', teaColors[resultTea].shadow);
+                
+                // Принудительно обновляем стили чайника
+                resultIcon.style.color = teaColors[resultTea].color;
+                resultIcon.style.textShadow = teaColors[resultTea].shadow;
+                
+                // Принудительно обновляем атрибут style
+                resultIcon.setAttribute('style', `color: ${teaColors[resultTea].color} !important; text-shadow: ${teaColors[resultTea].shadow} !important;`);
+                
+                // Принудительно обновляем класс
+                resultIcon.className = 'result-icon ' + resultTea + '-tea';
+                
+                // Чайник уже есть в HTML, только меняем цвет
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                // Принудительно обновляем атрибут data
+                resultIcon.setAttribute('data-tea-type', resultTea);
+                
+                console.log('Установлены CSS-переменные:');
+                console.log('--teapot-color:', teaColors[resultTea].color);
+                console.log('--teapot-shadow:', teaColors[resultTea].shadow);
+                console.log('Inline style:', resultIcon.getAttribute('style'));
+                console.log('Computed style:', window.getComputedStyle(resultIcon).color);
+                
+                // Проверяем, что переменные действительно установлены
+                const rootStyles = getComputedStyle(document.documentElement);
+                console.log('CSS переменная --teapot-color:', rootStyles.getPropertyValue('--teapot-color'));
+            } else {
+                console.error('Цвет для типа чая не найден:', resultTea);
+            }
+
+            showScreen('result-screen');
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            scores = { black: 0, green: 0, white: 0, oolong: 0, puer: 0, yellow: 0, herbal: 0 };
+            history = [];
+            
+            // Сбрасываем цвет чайника
+            document.documentElement.style.removeProperty('--teapot-color');
+            document.documentElement.style.removeProperty('--teapot-shadow');
+            
+            showScreen('welcome-screen');
+        }
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
