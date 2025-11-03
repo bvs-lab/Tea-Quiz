@@ -87,17 +87,8 @@
             border-radius: 32px 32px 0 0;
         }
 
-        .container::after {
-            content: '茶道';
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 20px;
-            color: var(--color-gold);
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-        }
+        /* декоративная надпись удалена */
+        .container::after { content: none; }
 
         @keyframes fadeIn {
             from {
@@ -148,14 +139,8 @@
             color: var(--color-jade);
         }
 
-        .tea-icon::after {
-            content: '🌸';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            font-size: 20px;
-            color: var(--color-red);
-        }
+        /* цветок слева удален */
+        .tea-icon::after { content: none; }
 
         h1 {
             font-size: 2.5rem;
@@ -167,18 +152,7 @@
             letter-spacing: 1px;
         }
 
-        h1::before {
-            content: '茶道';
-            position: absolute;
-            top: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9rem;
-            color: var(--color-brown);
-            font-weight: normal;
-            letter-spacing: 3px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-        }
+        h1::before { content: none; }
 
         h1::after {
             content: '☯';
@@ -199,25 +173,7 @@
             position: relative;
         }
 
-        .subtitle::before {
-            content: '「';
-            position: absolute;
-            left: -15px;
-            top: -5px;
-            font-size: 1.5rem;
-            color: var(--color-brown);
-            opacity: 0.7;
-        }
-
-        .subtitle::after {
-            content: '」';
-            position: absolute;
-            right: -15px;
-            top: -5px;
-            font-size: 1.5rem;
-            color: var(--color-brown);
-            opacity: 0.7;
-        }
+        .subtitle::before, .subtitle::after { content: none; }
 
         .btn {
             background: var(--color-jade);
@@ -235,25 +191,7 @@
             overflow: hidden;
         }
 
-        .btn::before {
-            content: '茶';
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        .btn::after {
-            content: '道';
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
+        .btn::before, .btn::after { content: none; }
 
 
         .btn:hover {
@@ -476,17 +414,7 @@
             position: relative;
         }
 
-        .result-title::before {
-            content: '品茶';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.7rem;
-            color: var(--color-brown);
-            font-weight: normal;
-            letter-spacing: 2px;
-        }
+        .result-title::before { content: none; }
 
         .result-description {
             font-size: 1.15rem;
@@ -517,17 +445,7 @@
             background: var(--color-jade);
         }
 
-        .result-details::after {
-            content: '茶经';
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 18px;
-            color: var(--color-brown);
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-        }
+        .result-details::after { content: none; }
 
         .result-details::before {
             content: '';
