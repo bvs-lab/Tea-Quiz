@@ -48,6 +48,7 @@
             line-height: 1.6;
             position: relative;
             overflow-x: hidden;
+            flex-direction: column;
         }
 
         body::before {
@@ -576,6 +577,40 @@
                 font-size: 70px;
             }
         }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 24px;
+            padding: 16px 0;
+            border-top: 1px solid var(--color-silk);
+            background: var(--color-paper);
+            width: 100%;
+            align-self: stretch;
+        }
+        .site-footer .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .site-footer__text {
+            margin: 0;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 14px;
+        }
+        .site-footer__tagline {
+            margin: 8px 0 0 0;
+            text-align: center;
+            color: var(--color-ink);
+            font-size: 16px;
+        }
+        .site-footer__links {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
@@ -691,6 +726,17 @@
             </div>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p class="site-footer__text">Разработано в <a href="https://taplink.cc/askhelpme" target="_blank" rel="noopener noreferrer"><strong>BVS-LAB</strong></a></p>
+            <p class="site-footer__tagline">Желаешь погрузиться в мир Богатства Чая?</p>
+            <div class="site-footer__links">
+                <a class="btn" href="https://t.me/bo_chai" target="_blank" rel="noopener noreferrer">Перейти в канал</a>
+                <a class="btn-secondary" href="tel:+79189701064">Позвонить: +7 918 970 10 64</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const questions = [
