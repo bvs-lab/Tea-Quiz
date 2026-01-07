@@ -58,8 +58,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tea-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%238B6F47" opacity="0.1"/><circle cx="15" cy="15" r="0.5" fill="%237A9D54" opacity="0.08"/><circle cx="35" cy="35" r="0.5" fill="%23DC143C" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23tea-pattern)"/></svg>');
+            background: var(--color-cream);
             pointer-events: none;
             z-index: -1;
         }
@@ -281,6 +280,17 @@
             transform: translateX(4px) translateY(0);
         }
 
+        .helper-tip {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 16px;
+            background: var(--color-cream);
+            border: 1px solid var(--color-silk);
+            color: var(--color-text);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         .navigation {
             display: flex;
             justify-content: space-between;
@@ -405,6 +415,15 @@
             text-shadow: 0 0 20px rgba(220, 20, 60, 0.3) !important;
         }
 
+        .result-icon.gaba-tea {
+            color: #9370DB !important;
+            text-shadow: 0 0 20px rgba(147, 112, 219, 0.3) !important;
+        }
+
+        .result-icon.gaba-tea svg {
+            filter: drop-shadow(0 10px 20px rgba(147, 112, 219, 0.4)) drop-shadow(0 0 20px #9370DB);
+        }
+
         .result-title {
             font-size: 2.2rem;
             color: var(--color-jade);
@@ -472,6 +491,51 @@
         .result-details strong {
             color: var(--color-jade);
             font-weight: 700;
+        }
+
+        .learning-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto 0;
+            background: var(--color-paper);
+            border: 1px solid var(--color-silk);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .learning-section h3 {
+            margin-top: 0;
+            color: var(--color-jade);
+            font-size: 1.4rem;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .learning-card {
+            border: 1px solid var(--color-silk);
+            border-radius: 16px;
+            padding: 16px;
+            background: var(--color-cream);
+        }
+
+        .learning-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--color-brown);
+        }
+
+        .faq-block details {
+            border: 1px solid var(--color-silk);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            background: var(--color-paper);
         }
 
         @media (max-width: 600px) {
@@ -551,6 +615,7 @@
             <div class="question-number" id="question-number"></div>
             <h2 id="question-text"></h2>
             <div class="answers" id="answers"></div>
+            <div class="helper-tip" id="helper-tip" aria-live="polite"></div>
             <div class="navigation">
                 <button class="btn-secondary" id="back-btn" onclick="goBack()" disabled>← Назад</button>
             </div>
@@ -645,6 +710,8 @@
         </div>
     </div>
 
+
+
     <footer class="site-footer">
         <div class="container">
             <p class="site-footer__text">Разработано в <a href="https://taplink.cc/askhelpme" target="_blank" rel="noopener noreferrer"><strong>BVS-LAB</strong></a></p>
@@ -663,7 +730,7 @@
                 answers: [
                     { text: "Утром, чтобы проснуться", weights: { black: 3, puer: 3, green: 1 } },
                     { text: "Днем, во время работы", weights: { green: 3, oolong: 2, yellow: 1 } },
-                    { text: "Вечером, для расслабления", weights: { white: 3, oolong: 2, herbal: 1 } },
+                    { text: "Вечером, для расслабления", weights: { white: 3, oolong: 2, herbal: 1, gaba: 3 } },
                     { text: "После еды", weights: { puer: 4, oolong: 2, yellow: 1 } }
                 ]
             },
@@ -672,8 +739,8 @@
                 answers: [
                     { text: "Мощный заряд бодрости", weights: { black: 3, puer: 3 } },
                     { text: "Мягкую активность и концентрацию", weights: { green: 3, yellow: 2 } },
-                    { text: "Расслабление и умиротворение", weights: { white: 3, oolong: 2 } },
-                    { text: "Баланс энергии и спокойствия", weights: { oolong: 3, green: 1 } }
+                    { text: "Расслабление и умиротворение", weights: { white: 3, oolong: 2, gaba: 4 } },
+                    { text: "Баланс энергии и спокойствия", weights: { oolong: 3, green: 1, gaba: 3 } }
                 ]
             },
             {
@@ -681,8 +748,8 @@
                 answers: [
                     { text: "Насыщенный, терпкий, крепкий", weights: { black: 3, puer: 2 } },
                     { text: "Свежий, травянистый, легкий", weights: { green: 3, yellow: 1 } },
-                    { text: "Нежный, цветочный, сладковатый", weights: { white: 3, oolong: 2 } },
-                    { text: "Сложный, многогранный, глубокий", weights: { oolong: 3, puer: 3 } }
+                    { text: "Нежный, цветочный, сладковатый", weights: { white: 3, oolong: 2, gaba: 3 } },
+                    { text: "Сложный, многогранный, глубокий", weights: { oolong: 3, puer: 3, gaba: 3 } }
                 ]
             },
             {
@@ -690,15 +757,15 @@
                 answers: [
                     { text: "Люблю выраженную горчинку", weights: { green: 3, puer: 2 } },
                     { text: "Легкая терпкость - в самый раз", weights: { black: 2, oolong: 3 } },
-                    { text: "Предпочитаю без горечи", weights: { white: 3, yellow: 2, herbal: 1 } }
+                    { text: "Предпочитаю без горечи", weights: { white: 3, yellow: 2, herbal: 1, gaba: 3 } }
                 ]
             },
             {
                 question: "Что для вас важнее?",
                 answers: [
                     { text: "Традиции и классика", weights: { black: 3, green: 2 } },
-                    { text: "Здоровье и польза", weights: { green: 3, white: 2, puer: 1 } },
-                    { text: "Необычный опыт и эксперименты", weights: { oolong: 3, puer: 2 } },
+                    { text: "Здоровье и польза", weights: { green: 3, white: 2, puer: 1, gaba: 4 } },
+                    { text: "Необычный опыт и эксперименты", weights: { oolong: 3, puer: 2, gaba: 3 } },
                     { text: "Эстетика и атмосфера", weights: { white: 3, yellow: 2 } }
                 ]
             },
@@ -707,7 +774,7 @@
                 answers: [
                     { text: "Активный, динамичный", weights: { black: 3, puer: 3 } },
                     { text: "Умеренный, сбалансированный", weights: { oolong: 3, green: 2 } },
-                    { text: "Спокойный, размеренный", weights: { white: 3, yellow: 2 } }
+                    { text: "Спокойный, размеренный", weights: { white: 3, yellow: 2, gaba: 4 } }
                 ]
             },
             {
@@ -715,10 +782,20 @@
                 answers: [
                     { text: "Энергичная встреча с друзьями", weights: { black: 2, herbal: 3 } },
                     { text: "Рабочая концентрация", weights: { green: 3, yellow: 2 } },
-                    { text: "Медитативное уединение", weights: { white: 3, oolong: 2 } },
+                    { text: "Медитативное уединение", weights: { white: 3, oolong: 2, gaba: 4 } },
                     { text: "Согревающий домашний уют", weights: { oolong: 2, puer: 4 } }
                 ]
             }
+        ];
+
+        const helperTips = [
+            "Подумайте, в какое время дня вы чаще всего тянетесь к чашке — это задаёт тон подбору.",
+            "Чётко сформулируйте желаемый эффект: бодрость, фокус или расслабление.",
+            "Представьте любимые десерты или ароматы — это поможет выбрать вкус.",
+            "Если не любите горечь, выбирайте варианты без неё — зелёные и габа будут мягче.",
+            "Решите, важнее ли традиции, здоровье или необычные ощущения.",
+            "Темп жизни подскажет силу напитка: динамичным людям нужны более бодрые чаи.",
+            "Вспомните, с какой атмосферой хотите связать чаепитие — это завершит образ."
         ];
 
         const teaTypes = {
@@ -777,11 +854,19 @@
                 effect: "настроение, витамины",
                 caffeine: "без кофеина",
                 time: "вечер, полдень"
+            },
+            gaba: {
+                name: "Габа-чай",
+                description: "Габа-чай — выбор для тех, кто ценит глубокое расслабление и мягкую ясность. Он проходит особую ферментацию, насыщаясь гамма-аминомасляной кислотой. Попробуйте: тайваньский Габа Улун, Габа Цзинь Сюань.",
+                taste: "медовый, сливочный, без горчинки",
+                effect: "расслабление без сонливости, гармония",
+                caffeine: "низкий",
+                time: "вечер, поздний день"
             }
         };
 
         let currentQuestion = 0;
-        let scores = { black: 0, green: 0, white: 0, oolong: 0, puer: 0, yellow: 0, herbal: 0 };
+        let scores = { black: 0, green: 0, white: 0, oolong: 0, puer: 0, yellow: 0, herbal: 0, gaba: 0 };
         let history = [];
 
         function startQuiz() {
@@ -793,6 +878,7 @@
             const question = questions[currentQuestion];
             document.getElementById('question-number').textContent = `Вопрос ${currentQuestion + 1} из ${questions.length}`;
             document.getElementById('question-text').textContent = question.question;
+            document.getElementById('helper-tip').textContent = helperTips[currentQuestion] || '';
             
             const progress = ((currentQuestion) / questions.length) * 100;
             document.getElementById('progress').style.width = progress + '%';
@@ -859,7 +945,6 @@
                 resultTea = 'oolong';
             }
 
-            console.log('Результат чая:', resultTea, 'Счет:', scores); // Отладка
             const result = teaTypes[resultTea];
             document.getElementById('result-title').textContent = result.name;
             document.getElementById('result-description').textContent = result.description;
@@ -875,11 +960,7 @@
             // Устанавливаем цвет чайника в соответствии с типом чая
             const resultIcon = document.getElementById('teapot-icon');
             
-            console.log('Найден элемент чайника:', resultIcon);
-            console.log('Тип чая:', resultTea);
-            
             if (!resultIcon) {
-                console.error('Элемент чайника не найден!');
                 return;
             }
             
@@ -891,13 +972,12 @@
                 'oolong': { color: '#CD853F', shadow: '0 0 20px rgba(205, 133, 63, 0.3)' },
                 'puer': { color: '#8B4513', shadow: '0 0 20px rgba(139, 69, 19, 0.3)' },
                 'yellow': { color: '#FFD700', shadow: '0 0 20px rgba(255, 215, 0, 0.3)' },
-                'herbal': { color: '#DC143C', shadow: '0 0 20px rgba(220, 20, 60, 0.3)' }
+                'herbal': { color: '#DC143C', shadow: '0 0 20px rgba(220, 20, 60, 0.3)' },
+                'gaba': { color: '#9370DB', shadow: '0 0 20px rgba(147, 112, 219, 0.3)' }
             };
             
             // Применяем цвет через CSS-переменные
             if (teaColors[resultTea]) {
-                console.log('Применяем цвет:', teaColors[resultTea]);
-                
                 // Устанавливаем CSS-переменные для корневого элемента
                 document.documentElement.style.setProperty('--teapot-color', teaColors[resultTea].color);
                 document.documentElement.style.setProperty('--teapot-shadow', teaColors[resultTea].shadow);
@@ -965,7 +1045,7 @@
 
         function restartQuiz() {
             currentQuestion = 0;
-            scores = { black: 0, green: 0, white: 0, oolong: 0, puer: 0, yellow: 0, herbal: 0 };
+            scores = { black: 0, green: 0, white: 0, oolong: 0, puer: 0, yellow: 0, herbal: 0, gaba: 0 };
             history = [];
             
             // Сбрасываем цвет чайника
