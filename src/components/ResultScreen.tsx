@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TeaKey, teaTypes, TEA_COLORS } from '../data/quizData';
-import { TeapotSvg } from './TeapotSvg';
 import { Button } from '@/components/ui/button';
 import { Share2, RotateCcw, Pencil } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -62,18 +61,23 @@ export function ResultScreen({
     >
       <div className="flex flex-col items-center text-center mb-12">
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', bounce: 0.35, delay: 0.2 }}
-          className="mb-8 rounded-full flex items-center justify-center"
+          className="mb-8 rounded-2xl overflow-hidden"
           style={{
-            width: '180px',
-            height: '180px',
-            backgroundColor: colorScheme.bg,
-            boxShadow: `0 12px 40px ${colorScheme.shadow}, 0 0 0 4px ${colorScheme.color}22`,
+            maxWidth: '280px',
+            width: '100%',
+            boxShadow: `0 12px 40px ${colorScheme.shadow}, 0 0 0 3px ${colorScheme.color}22`,
           }}
         >
-          <TeapotSvg color={colorScheme.color} className="w-24 h-24" />
+          <img
+            src={`${import.meta.env.BASE_URL}result-tea-set.png`}
+            alt="Чайный набор"
+            className="w-full h-auto block"
+            width={280}
+            height={280}
+          />
         </motion.div>
         
         <span className="uppercase tracking-widest text-sm font-semibold mb-3 opacity-70" style={{ color: colorScheme.color }}>
