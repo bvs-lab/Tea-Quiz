@@ -6,7 +6,8 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const port = Number(process.env.PORT) || 5174;
-const basePath = process.env.BASE_PATH || "/";
+/** GitHub Pages: https://bvs-lab.github.io/Tea-Quiz/ */
+const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
   base: basePath,

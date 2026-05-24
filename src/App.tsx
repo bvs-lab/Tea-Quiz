@@ -83,7 +83,7 @@ function QuizApp() {
     >
       <img
         ref={bgImgRef}
-        src="/bg.png"
+        src={`${import.meta.env.BASE_URL}bg.png`}
         aria-hidden="true"
         className="bg-image pointer-events-none select-none"
         style={{

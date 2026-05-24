@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "build:pages": "tsc --noEmit && vite build --base=/Tea-Quiz/",
     "preview": "vite preview",
+    "preview:pages": "vite preview --base=/Tea-Quiz/",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
