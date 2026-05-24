@@ -64,19 +64,20 @@ export function ResultScreen({
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', bounce: 0.35, delay: 0.2 }}
-          className="mb-8 rounded-2xl overflow-hidden"
+          className="mb-8 rounded-full overflow-hidden shrink-0"
           style={{
-            maxWidth: '280px',
-            width: '100%',
-            boxShadow: `0 12px 40px ${colorScheme.shadow}, 0 0 0 3px ${colorScheme.color}22`,
+            width: '220px',
+            height: '220px',
+            backgroundColor: colorScheme.bg,
+            boxShadow: `0 12px 40px ${colorScheme.shadow}, 0 0 0 4px ${colorScheme.color}22`,
           }}
         >
           <img
             src={`${import.meta.env.BASE_URL}result-tea-set.png`}
             alt="Чайный набор"
-            className="w-full h-auto block"
-            width={280}
-            height={280}
+            className="w-full h-full object-cover object-center"
+            width={220}
+            height={220}
           />
         </motion.div>
         
